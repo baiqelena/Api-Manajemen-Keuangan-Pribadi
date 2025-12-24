@@ -44,4 +44,14 @@ class AuthController extends Controller
             'token' => $token
         ]);
     }
+
+        public function logout()
+    {
+        auth()->logout(); // invalidate token
+
+        return response()->json([
+            'message' => 'Successfully logged out'
+        ]);
+    }
+
 }
