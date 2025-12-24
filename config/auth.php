@@ -41,7 +41,12 @@ return [
             'provider' => 'users',
         ],
     ],
-
+    'guards' => [
+        'api' => [
+            'driver' => 'jwt',
+            'provider' => 'users',
+    ],
+],
     /*
     |--------------------------------------------------------------------------
     | User Providers
@@ -111,5 +116,7 @@ return [
     */
 
     'password_timeout' => env('AUTH_PASSWORD_TIMEOUT', 10800),
+
+
 
 ];
