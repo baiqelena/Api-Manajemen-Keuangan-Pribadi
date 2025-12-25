@@ -45,6 +45,17 @@ class AuthController extends Controller
         ]);
     }
 
+        public function refresh()
+    {
+        $newToken = JWTAuth::parseToken()->refresh();
+
+        return response()->json([
+            'message' => 'Token refreshed successfully',
+            'token' => $newToken
+        ]);
+    }
+
+
         public function logout()
     {
         auth()->logout(); // invalidate token
