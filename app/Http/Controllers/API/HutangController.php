@@ -14,7 +14,7 @@ class HutangController extends Controller
     }
 
     // Create
-    public function create(Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'nama_pemberi_hutang' => 'required|string',
@@ -35,7 +35,7 @@ class HutangController extends Controller
     }
 
     // Detail
-    public function detail($id)
+    public function show($id)
     {
         $hutang = Hutang::findOrFail($id);
         return response()->json($hutang);
