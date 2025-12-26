@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\HutangController;
 use App\Http\Controllers\API\TabunganController;
+use App\Http\Controllers\API\TransaksiController;
 
 
 Route::post('register', [AuthController::class, 'register']);
@@ -17,7 +18,6 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/hutang/{id}', [HutangController::class, 'show']);
     Route::put('/hutang/{id}', [HutangController::class, 'update']);
     Route::delete('/hutang/{id}', [HutangController::class, 'destroy']);
-
 });
 
 Route::middleware('auth:api')->group(function () {
@@ -26,5 +26,15 @@ Route::middleware('auth:api')->group(function () {
     Route::get('/tabungan/{id}', [TabunganController::class, 'show']); 
     Route::put('/tabungan/{id}', [TabunganController::class, 'update']);
     Route::delete('/tabungan/{id}', [TabunganController::class, 'destroy']);
+});
+
+Route::middleware('auth:api')->group(function () {
+    Route::get('/transaksi', [TransaksiController::class, 'index']);
+    Route::post('/transaksi', [TransaksiController::class, 'store']);
+    Route::get('/transaksi/{id}', [TransaksiController::class, 'show']);
+    Route::put('/transaksi/{id}', [TransaksiController::class, 'update']);
+    Route::delete('/transaksi/{id}', [TransaksiController::class, 'destroy']);
+    Route::get('/transaksi/tabungan/{tabungan_id}', [TransaksiController::class, 'getByTabungan']);
 
 });
+
