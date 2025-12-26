@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\HutangController;
+use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\HutangController;
 
 
 Route::post('register', [AuthController::class, 'register']);
