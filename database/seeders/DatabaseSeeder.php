@@ -21,6 +21,7 @@ class DatabaseSeeder extends Seeder
             TransaksiSeeder::class,
             UserSeeder::class,
             HutangSeeder::class,
+            LampiranTransaksiSeeder::class,
         ]);
     }
     }
