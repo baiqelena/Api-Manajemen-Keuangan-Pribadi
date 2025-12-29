@@ -1,11 +1,15 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Api\AuthController;
-use App\Http\Controllers\Api\HutangController;
+use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\HutangController;
 use App\Http\Controllers\API\TabunganController;
 use App\Http\Controllers\API\TransaksiController;
 use App\Http\Controllers\API\LampiranTransaksiController;
+use App\Http\Controllers\API\IncomeController;
+use App\Http\Controllers\API\BudgetController;
+use App\Http\Controllers\API\NotificationController;
+use App\Http\Controllers\API\ActivityController;
 
 Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
@@ -38,5 +42,27 @@ Route::middleware('auth:api')->group(function () {
     Route::put('/lampiran/{id}', [LampiranTransaksiController::class, 'update']); 
     Route::delete('/lampiran/{id}', [LampiranTransaksiController::class, 'destroy']);
     Route::get('/lampiran/transaksi/{transaksi_id}', [LampiranTransaksiController::class, 'getByTransaksi']);
+
+    Route::get('/budget', [BudgetController::class, 'index']);
+    Route::post('/budget', [BudgetController::class, 'store']);
+    Route::put('/budget/{id}', [BudgetController::class, 'update']);
+    Route::delete('/budget/{id}', [BudgetController::class, 'destroy']);
+    
+    Route::get('/notification', [NotificationController::class, 'index']);
+    Route::post('/notification', [NotificationController::class, 'store']);
+    Route::get('/notification/{id}', [NotificationController::class, 'show']);
+    Route::put('/notification/{id}', [NotificationController::class, 'update']);
+    Route::delete('/notification/{id}', [NotificationController::class, 'destroy']);
+
+    Route::get('/income', [IncomeController::class, 'index']);
+    Route::post('/income', [IncomeController::class, 'store']);
+    Route::put('/income/{id}', [IncomeController::class, 'update']);
+    Route::delete('/income/{id}', [IncomeController::class, 'destroy']);
+
+    Route::get('/activity', [ActivityController::class, 'index']);
+    Route::post('/activity', [ActivityController::class, 'store']);
+    Route::get('/activity/{id}', [ActivityController::class, 'show']);
+    Route::put('/activity/{id}', [ActivityController::class, 'update']);
+    Route::delete('/activity/{id}', [ActivityController::class, 'destroy']);
 
 });
