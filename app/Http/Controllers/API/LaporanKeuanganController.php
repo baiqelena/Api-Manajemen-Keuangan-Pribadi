@@ -77,6 +77,36 @@ class LaporanKeuanganController extends Controller
             'data' => $laporan
         ], 200);
     }
+    public function update(Request $request, $id)
+    {
+        $laporan = LaporanKeuangan::find($id);
+
+        if (!$laporan) {
+            return response()->json([
+                'status' => false,
+                'message' => 'Laporan tidak ditemukan'
+            ], 404);
+        }
+
+        $request->validate([
+            'total_pengeluaran' => 'required|numeric',
+            'total_investasi' => 'required|numeric'
+        ]);
+
+        $saldoAkhir = $request->total_investasi - $request->total_pengeluaran;
+
+        $laporan->update([
+            'total_pengeluaran' => $request->total_pengeluaran,
+            'total_investasi' => $request->total_investasi,
+            'saldo_akhir' => $saldoAkhir
+        ]);
+
+        return response()->json([
+            'status' => true,
+            'message' => 'Laporan keuangan berhasil diupdate',
+            'data' => $laporan
+        ], 200);
+    }
 
     // 🔹 Hapus laporan
     public function destroy($id)

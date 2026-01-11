@@ -85,6 +85,7 @@ Route::middleware('auth:api')->group(function () {
     Route::post('laporan/generate', [LaporanKeuanganController::class, 'generate']);
     Route::get('laporan', [LaporanKeuanganController::class, 'index']);
     Route::get('laporan/{id}', [LaporanKeuanganController::class, 'show']);
+    Route::put('laporan/{id}', [LaporanKeuanganController::class, 'update']);
     Route::delete('laporan/{id}', [LaporanKeuanganController::class, 'destroy']);
 
     Route::post('target-keuangan', [TargetKeuanganController::class, 'store']);
